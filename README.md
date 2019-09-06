@@ -1,4 +1,4 @@
-# Drixit-exercise
+# Alibrate
 
 Simple mobile app interface concept that consumes Alibrate's api endpoints.
 It is made using **react native** and **redux** for state management.
