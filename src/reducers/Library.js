@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: false,
-        books: action.payload.data
+        books: [...state.books, ...action.payload.data]
       };
     }
     case FETCH_DATA_REQUEST: {

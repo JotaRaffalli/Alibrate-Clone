@@ -22,7 +22,7 @@ const fetchDataError = () => ({
 const fetchLiraryToRead = async params => {
   const token = await AsyncStorage.getItem("token");
   const { user } = await jwt(token);
-  if (token)
+  if (token && params.pageNumber <= 2)
     return fetch(
       `${config.API_URL}/library/user/${user}?page=${params.pageNumber}&limit=10`,
       {

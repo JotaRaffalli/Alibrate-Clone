@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback
 } from "react-native";
 import { Block, Text, theme } from "galio-framework";
-
+import { Rating, AirbnbRating } from "react-native-elements";
 import { argonTheme } from "../constants";
 
 class Card extends React.Component {
@@ -36,16 +36,29 @@ class Card extends React.Component {
 
     return (
       <Block row={horizontal} card flex style={cardContainer}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate("Pro")}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate("")}>
           <Block flex style={imgContainer}>
             <Image source={{ uri: item.bookCoverHome }} style={imageStyles} />
           </Block>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate("Pro")}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate("")}>
           <Block flex space="between" style={styles.cardDescription}>
+            <Text size={10} style={styles.cardText}>
+              {item.genre}
+            </Text>
             <Text size={14} style={styles.cardTitle}>
               {item.title}
             </Text>
+            <Rating
+              showRating
+              startingValue={Math.floor(item.globalRating.rating)}
+              ratingColor={argonTheme.COLORS.ACTIVE}
+              ratingTextColor={argonTheme.COLORS.ACTIVE}
+              count={10}
+              onFinishRating={this.ratingCompleted}
+              imageSize={20}
+              style={{ paddingVertical: 5 }}
+            ></Rating>
             <Text
               size={12}
               muted={!ctaColor}
@@ -81,6 +94,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: "wrap",
     paddingBottom: 6
+  },
+  cardText: {
+    paddingBottom: 2
   },
   cardDescription: {
     padding: theme.SIZES.BASE / 2

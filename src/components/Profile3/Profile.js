@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
 import { Avatar } from "react-native-elements";
 import PropTypes from "prop-types";
+import { Button } from "../";
 
 const styles = StyleSheet.create({
   scroll: {
@@ -27,13 +28,13 @@ const styles = StyleSheet.create({
 
 class SettingsScreen extends Component {
   render() {
-    const { avatar, name, country, birthdate } = this.props;
-    console.log("Esta es la edad ", birthdate);
-    const age = birthdate
+    const { avatar, name, country, birthday } = this.props;
+    console.log("Esta es la edad ", birthday);
+    const age = birthday
       ? Math.floor(
-          (new Date() - new Date(birthdate.toString()).getTime()) / 3.15576e10
+          (new Date() - new Date(birthday.toString()).getTime()) / 3.15576e10
         )
-      : 24;
+      : 0;
     return (
       <View style={styles.userRow}>
         <View style={styles.userImage}>
@@ -60,6 +61,10 @@ class SettingsScreen extends Component {
             {age} años
           </Text>
         </View>
+
+        <Text style={{ paddingLeft: 100, color: "pink", fontSize: 16 }}>
+          Editar
+        </Text>
       </View>
     );
   }

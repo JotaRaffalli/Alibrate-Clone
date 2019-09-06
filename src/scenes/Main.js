@@ -11,10 +11,10 @@ import LoginActions from "./../actions/Login";
 import LibraryActions from "./../actions/Library";
 import Profile from "./../components/Profile3/Profile";
 import Home from "../components/Home";
-/* import { Header } from "../components/"; */
+import { Header } from "../components/";
 
-/* import { Block, theme } from "galio-framework"; */
-/* import tabs from "../constants/tabs"; */
+import { Block, theme } from "galio-framework";
+import tabs from "../constants/tabs";
 
 /* const contactData = {
   name: "Darrell Schmeler",
@@ -118,10 +118,10 @@ class Main extends Component {
       page: 1
     };
   }
-  componentDidMount() {
+  async componentDidMount() {
     console.log("Main User Data es >>>>> ", this.props.userData);
-    let pageNumber = this.state.page;
-    this.props.fetchData("libraryToRead", { pageNumber });
+    let pageNumber = await this.state.page;
+    await this.props.fetchData("libraryToRead", { pageNumber });
   }
   render() {
     const {
@@ -133,9 +133,9 @@ class Main extends Component {
     console.log("Libros >>>>> ", this.props.books);
     return (
       <View style={styles.container}>
-        {/* <Block style={{ marginBottom: theme.SIZES.BASE }}>
-          <Header tabs={tabs.categories} search title="Title" />
-        </Block> */}
+        <Block style={{ marginBottom: theme.SIZES.BASE }}>
+          <Header tabs={tabs.categories} search title="Mi Librería" />
+        </Block>
         <Profile
           name={displayName}
           avatar={picture}
@@ -183,8 +183,7 @@ export default connect(
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 35
+    flex: 1
   },
 
   input: {
