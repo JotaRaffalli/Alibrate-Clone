@@ -5,7 +5,7 @@ import {
 } from "../constants/ActionTypes";
 
 const initialState = {
-  books: [],
+  books: {},
   isLoading: false,
   error: false
 };
@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: false,
-        books: [...state.books, ...action.payload.data]
+        books: action.payload.data
       };
     }
     case FETCH_DATA_REQUEST: {
@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
         ...state,
         isLoading: true,
         error: false,
-        books: []
+        books: {}
       };
     }
     case FETCH_DATA_ERROR: {
